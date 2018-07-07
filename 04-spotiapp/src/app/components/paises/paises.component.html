@@ -1,0 +1,16 @@
+<h1>Muestra de como realizar una simple peticion get a una API</h1>
+
+<p>
+  Sitio:
+  <span>http://restcountries.eu/</span>
+</p>
+
+<p>Api: 
+  <span>https://restcountries.eu/rest/v2/lang/es</span>
+</p>
+
+<ul>
+  <li *ngFor="let pais of paises">
+    {{pais.name}} - {{ pais.population | number }}
+  </li>
+</ul>

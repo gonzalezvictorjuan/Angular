@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col">
+    <input  #terminoBusqueda (keyup)="buscar(terminoBusqueda.value)"
+    class="form-control" placeholder="Buscar Artista" type="text" name="" value="">
+  </div>
+</div>
+
+<app-loading class="m-5" *ngIf="loading"></app-loading>
+
+<app-tarjetas *ngIf="!loading" [items]="artistas" ></app-tarjetas>
+
+<!-- el items es la informacion que le envio desde el home al componente de component para que
+renderice las Tarjetas
+para eso tengo que establecer el @Input en el ts de tarjetas -->

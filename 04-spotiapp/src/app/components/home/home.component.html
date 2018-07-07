@@ -1,0 +1,14 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div *ngIf="error" class="alert alert-danger animated fadeIn">
+  <h3>ERROR</h3>
+  <p>
+    {{mensajeError}}
+  </p>
+</div>
+
+<app-tarjetas [items]="nuevasCanciones" ></app-tarjetas>
+
+<!-- el items es la informacion que le envio desde el home al componente de component para que
+renderice las Tarjetas
+para eso tengo que establecer el @Input en el ts de tarjetas -->

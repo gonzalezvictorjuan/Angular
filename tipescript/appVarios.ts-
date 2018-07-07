@@ -1,0 +1,182 @@
+///////////////////
+// template literal
+///////////////////
+
+let namee:string = "Victor Juan"
+let apellido:string = "Gonzalez"
+let edad:number = 25;
+
+let texto = "hola, " + namee + " " + apellido + " (" + edad + ")";
+let templateLiteral = `hola, ${namee} ${apellido} (${edad})`;
+
+console.log(texto);
+console.log(templateLiteral);
+
+///////////////////////////////////////
+// parametros parciales y obligatorios
+///////////////////////////////////////
+
+// momento es un parametro opcional con solo colocar el ?
+function activar( quien:string,
+                  objeto:string = "batiseñal",
+                  momento?:string) {
+  let mensaje:string;
+
+  if ( momento) {
+      mensaje = `${ quien } activo la ${ objeto } en la ${ momento }`;
+  } else {
+      mensaje = `${ quien } activo la ${ objeto }`;
+  }
+  console.log(mensaje);
+}
+
+activar("Gordon", "jojo", "tarde");
+// en este caso jojo pisa el valor definido en la function
+
+//////////////////////
+// fuction de flecha
+//////////////////////
+
+let miFuctionN = function ( a:any ) {  return a; }
+let miFuctionF = ( a:any ) => a;
+
+let miFuctionN2 = function( a:number , b:number ) {  return a + b; }
+let miFuctionF2 = ( a:number, b:number ) => a +b;
+
+console.log (miFuctionN("Normal"));
+console.log (miFuctionF("Flecha"));
+console.log ("Normal " + miFuctionN2( 1, 2 ));
+console.log ("Flecha " + miFuctionF2( 1 , 2 ));
+
+
+let hulk = {
+  nombre : "Hulk",
+  smash() {
+
+    setTimeout( () => {
+        // los corchetes no son necesarios puesto que solo
+        // es una linea de codigo, los dejo para referenciar que
+        // asi se colocarian para tener mas de una linea
+      console.log( this.nombre + " smash!!");
+    }, 1500 );
+  }
+}
+
+hulk.smash();
+
+
+///////////////////////////////
+// Destructuracion de objetos
+///////////////////////////////
+
+let avenger = {
+  nombre: "Steve",
+  clave: "Capitan America",
+  poder: "Droga"
+}
+
+let { nombre,  poder , clave} = avenger;
+// no importa el orden mientras los nombres de las propiedades sean las mismas
+
+// let nombre =avenger.nombre; //vieja forma
+// let clave = avenger.clave;
+// let poder = avenger.poder;
+
+console.log( nombre, clave, poder);
+
+///////////////////////////////
+// Destructuracion de arreglos
+///////////////////////////////
+
+let avengers:string[] = ["Thor","Steve","Tony"];
+
+let [thor, capi, ironman] = avengers;
+
+console.log( thor, capi, ironman);
+//la desestructuracion en los arreglos es secuencial
+
+//////////////
+//Promesas
+//////////////
+//Permite ejecutar codigo cuando una tarea asincrona es terminada
+
+let prom1 = new Promise( function (resolve:any , reject:any) {
+  setTimeout( ()=>{
+    console.log("Promesa Terminada");
+
+    //Termina bien
+    // resolve();
+
+    //Termina mal
+    reject()
+
+  }, 1500)
+})
+
+prom1.then(
+  function(){  console.log("Ejecutame cuando se termine bien!");  },
+  function(){  console.error("Ejecutame si todo sale mal");  }
+)
+
+
+/////////////
+//Interfaces
+/////////////
+//Algo que javascript no tenia
+
+interface Xmen {
+  nombre:string,
+  poder:string
+}
+
+function enviarMision( xmen:Xmen ) {
+  console.log("Enviando a: " + xmen.nombre);
+}
+
+let wolverine:Xmen = {
+  nombre: "Wolverine",
+  poder: "regeneracion"
+}
+
+enviarMision(wolverine);
+
+
+///////////////////////////////////////////
+// Definir clases basicas en TypeScript
+///////////////////////////////////////////
+
+class Avenger {
+  nombre:string = "";
+  equipo:string = "";
+  nombreReal:string = "";
+  puedePelear:boolean = false;
+  peleasGanadas:number = 0;
+
+  constructor( nombre:string, equipo:string, nombreReal:string) {
+    this.nombre = nombre;
+    this.equipo = equipo;
+    this.nombreReal = nombreReal;
+  }
+}
+
+let antman:Avenger = new Avenger( "Antman", "cap", "Scott Lang");
+
+console.log(antman);
+
+
+/////////////////////////////////
+// Decoradores en TypeScript
+/////////////////////////////////
+
+function consola ( constructor: Function ) {
+  console.log( constructor );
+}
+
+@consola
+class Villano {
+
+  constructor( public nomb:string) {
+
+  }
+
+}
